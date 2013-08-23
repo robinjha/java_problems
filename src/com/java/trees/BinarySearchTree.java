@@ -90,26 +90,35 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 				return null;
 		}
 
-		private T postorderNext() {
-			if(visiting.empty()){
-				pushLeftMostChildNodeRecord(root);
-			}
-			
-			if(visiting.peek().right == null || visitingRightChild.peek()){
-				T result = visiting.pop().item;
-				visitingRightChild.pop();
-				if(visiting.empty()){
-					return null;
-				}
-				return result;
-			}else{
-				visitingRightChild.push(true);
-				BinaryNode<T> right = visiting.peek().right;
-				pushLeftMostChildNodeRecord(right);
-				return postorderNext();
-			}
-		}
-
+			private T postorderNext() {
+        if (visiting.empty()) {	// at beginning of iterator
+            // find the leftmost node, pushing all the intermediate nodes
+            // onto the visiting stack
+            pushLeftMostChildNodeRecord(root);
+        } // the node on top of the visiting stack is the next one to be
+          // visited, unless it has a right subtree
+        if ((visiting.peek().right == null) || // no right subtree, or
+            (visitingRightChild.peek())) { // right subtree already visited
+            // already visited right child, time to visit the node on top
+            T result = visiting.pop().item;
+            visitingRightChild.pop();
+            if (visiting.empty()) {
+        	root = null;
+            }
+            return result;
+        } else { // now visit this node's right subtree
+            Boolean result = visitingRightChild.pop();
+            visitingRightChild.push(true);
+            // now push everything down to the leftmost node
+            // in the right subtree
+            BinaryNode<T> right = visiting.peek().right;
+            assert(right != null);
+            pushLeftMostChildNodeRecord(right);
+            // use recursive call to visit that node
+            return postorderNext();
+        }
+    }
+		
 		private void pushLeftMostChildNodeRecord(BinaryNode<T> node) {
 			if(node != null){
 				visiting.push(node);
@@ -120,8 +129,20 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		}
 
 		private T inorderNext() {
-			// TODO Auto-generated method stub
-			return null;
+			if(visiting.empty()){
+				pushLeftMostChildNodeRecord(root);
+			}
+			BinaryNode<T> node = visiting.pop();
+			T result = node.item;
+			
+			if(node.right != null){
+				BinaryNode<T> right = node.right;
+				pushLeftMostChildNodeRecord(right);
+			}
+			if(visiting.empty()){
+				root = null;
+			}
+			return result;
 		}
 
 		private T preorderNext() {
@@ -249,13 +270,17 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			return getRightmost(node.right);
 		}
 	}
+
+	public Iterator<T> iterator() {
+		return new TreeIterator(root);
+	}
 	
 	public Iterator<T> preIterator() {
 		return new TreeIterator(root, true);
 	    }
 	
 	public Iterator<T> postIterator() {
-		return new TreeIterator(root, true);
+		return new TreeIterator(root, false);
 	    }
 
 	public String toString(){
@@ -300,13 +325,20 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		}
 		System.out.println("");
 		
-		Iterator<String> itPost = bst.postIterator();
-		System.out.print("pre-order: ");
-		while (itPost.hasNext()) {
-		    System.out.print(itPost.next() + ", ");
+		it = bst.postIterator();
+		System.out.print("post-order: ");
+		while (it.hasNext()) {
+		    System.out.print(it.next() + ", ");
 		}
 		System.out.println("");
 
+		it = bst.iterator();
+		System.out.print("in-order: ");
+		while (it.hasNext()) {
+		    System.out.print(it.next() + ", ");
+		}
+		System.out.println("");
+		
 
 	}
 	
