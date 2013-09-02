@@ -296,7 +296,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 	}
 	
 	/**
-	 * main method
+	 * main method to test iteration for different traversals
 	 */
 	
 	public static void main(String[] args){
