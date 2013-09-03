@@ -7,6 +7,12 @@ package com.java.trees;
  */
 public class BinarySearch {
 	
+	/**
+	 * 
+	 * @param a - an array of ints
+	 * @param key
+	 * @return value of the index where the key is found
+	 */
 	public static int binarySearch(int[] a, int key){
 		int start = 0, end = a.length -1, mid = 0;
 		while(start <= end){
