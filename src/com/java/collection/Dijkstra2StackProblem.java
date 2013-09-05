@@ -1,4 +1,6 @@
 /**
+ * @author rjha
+ * date - 09/04/2013
  * simple example of an interpreter
  * 
  * example stack client to evaluate parenthesized arithmetic expressions
