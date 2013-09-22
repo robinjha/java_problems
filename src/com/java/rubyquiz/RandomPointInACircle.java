@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * @author robin
  * date : 09/22/2013
+ * problem: http://rubyquiz.strd6.com/quizzes/234-random-points-within-a-circle
  *
  */
 
