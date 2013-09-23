@@ -59,4 +59,12 @@ public class RandomPointInACircleTest {
 		Point2D.Double point = new Point2D.Double(0.0, 0.0);
 		assertEquals("Point must be on the circle, value true", true, rpc.isWithin(point, 3.0, 0.0, 3.0));
 	}
+	
+	@Test
+	public void testGetRandomPoint() {
+		RandomPointInACircle rpc = new RandomPointInACircle(3.0, 0.0, 0.0);
+		Point2D.Double point = new Point2D.Double(0.0, 0.0);
+		rpc.getRandomPoint(3.0, 0.0, 0.0);
+		assertEquals("Point must be on the circle, value true", true, rpc.isWithin(point, rpc.getLocation().x, rpc.getLocation().y , 3.0));
+	}
 }
