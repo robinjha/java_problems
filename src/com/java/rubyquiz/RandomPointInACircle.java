@@ -108,13 +108,13 @@ public class RandomPointInACircle {
 	public static void main(String[] args){
 		double x1 = 0.0, y1 = 0.0, radius1 = 0.0;
 		System.out.println("-------RANDOM POINTS IN A CIRCLE-------------");
-		System.out.println("Enter the radius of the circle : ");
+		System.out.print("Enter the radius of the circle : ");
 		Scanner sc = new Scanner(System.in);
 		radius1 = sc.nextDouble();
-		System.out.println("Enter the x-coordinate of the origin of circle : ");
+		System.out.print("Enter the x-coordinate of the origin of circle : ");
 		Scanner sc1 = new Scanner(System.in);
 		x1 = sc1.nextDouble();
-		System.out.println("Enter the y-coordinate of the origin of circle : ");
+		System.out.print("Enter the y-coordinate of the origin of circle : ");
 		Scanner sc2 = new Scanner(System.in);
 		y1 = sc2.nextDouble();
 		RandomPointInACircle test = new RandomPointInACircle(radius1, x1, y1);
