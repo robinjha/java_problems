@@ -120,7 +120,7 @@ public class RandomPointInACircle {
 		RandomPointInACircle test = new RandomPointInACircle(radius1, x1, y1);
 		test.getRandomPoint(radius1, x1, y1);
 		System.out.println(test.toString());
-		System.out.println("Is the point within the circle: "+test.isWithin(test.getOrigin(), 0.0, -3.0, 3.0));
+		//System.out.println("Is the point within the circle: "+test.isWithin(test.getOrigin(), 0.0, -3.0, 3.0));
 	}
 	
 	
