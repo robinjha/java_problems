@@ -19,9 +19,6 @@ public class RandomPointInACircle {
 	
 	public RandomPointInACircle(double radius, double x, double y) {
 		this.radius = radius;
-		if(radius <= 0){
-			throw new IllegalArgumentException("radius value should be positive.");
-		}
 		this.origin = new Point2D.Double(x, y);
 		this.location = new Point2D.Double();
 	}
@@ -107,10 +104,20 @@ public class RandomPointInACircle {
 	
 	public static void main(String[] args){
 		double x1 = 0.0, y1 = 0.0, radius1 = 0.0;
+		int count = 0;
 		System.out.println("-------RANDOM POINTS IN A CIRCLE-------------");
-		System.out.print("Enter the radius of the circle : ");
-		Scanner sc = new Scanner(System.in);
-		radius1 = sc.nextDouble();
+		do{
+			System.out.print("Enter the radius of the circle. Should be double (ex 0.0) : ");
+			Scanner sc = new Scanner(System.in);
+			radius1 = sc.nextDouble();
+			count++;
+			
+			if(radius1 <= 0.0 && count >= 4){
+				throw new IllegalArgumentException("radius value should be positive. Program exiting after 5 tries.");
+			}
+			
+		}while(radius1 <= 0.0);
+		
 		System.out.print("Enter the x-coordinate of the origin of circle : ");
 		Scanner sc1 = new Scanner(System.in);
 		x1 = sc1.nextDouble();
