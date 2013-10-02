@@ -9,9 +9,6 @@
 
 package com.java.collection;
 
-import java.util.List;
-import java.util.*;
-
 
 public class MergeTwoSortedLinkedList<T> {
 	
@@ -45,6 +42,7 @@ public class MergeTwoSortedLinkedList<T> {
 	}
 
 	/**
+	 * this function merges the two linked list iteratively
 	 * @param - first node of 1st list
 	 * @param - first node of 2nd list
 	 * returns the first node of the merged list
@@ -63,13 +61,20 @@ public class MergeTwoSortedLinkedList<T> {
 		
 		while(list1.next() != null || list2.next() != null){
 			if(list1.data < list2.data){
-				
+				head = 
 			}
 		}
 		
 		return head;
 	}
 	*/
+	
+	/**
+	 *  this function merges the two linked list recursively
+	 * @param list1
+	 * @param list2
+	 * @return the pointer to the head of the merged list
+	 */
 	public Node MergeListsRecursively(Node list1, Node list2){
 		if(list1 == null) return list2;
 		if(list2 == null) return list1;
@@ -84,7 +89,7 @@ public class MergeTwoSortedLinkedList<T> {
 	}
 	
 	public static void main(String[] args) {
-		MergeTwoSortedLinkedList m = new MergeTwoSortedLinkedList();
+		MergeTwoSortedLinkedList<Integer> m = new MergeTwoSortedLinkedList<Integer>();
 		Node list1 = new Node(1);
 		Node a = new Node(2);
 		list1.next = a;
@@ -106,7 +111,7 @@ public class MergeTwoSortedLinkedList<T> {
 
 	}
 
-	private void printNodes(Node head) {
+	public void printNodes(Node head) {
 		System.out.println();
 		while(head != null){
 			System.out.println(head.data + " ");
