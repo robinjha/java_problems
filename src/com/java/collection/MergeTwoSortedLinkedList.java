@@ -47,7 +47,7 @@ public class MergeTwoSortedLinkedList<T> {
 	 * @param - first node of 2nd list
 	 * returns the first node of the merged list
 	 */
-	/*public Node MergeLists(Node list1, Node list2) {
+	public Node MergeLists(Node list1, Node list2) {
 		Node head;
 		if(list1 == null)return list2;
 		if(list2 == null)return list1;
@@ -58,16 +58,21 @@ public class MergeTwoSortedLinkedList<T> {
 		else{
 			head = list2;
 		}
-		
-		while(list1.next() != null || list2.next() != null){
-			if(list1.data < list2.data){
-				head = 
+		Node tmp = head;
+		while(list1.next != null || list2.next != null){
+			if(list1.data <= list2.data){
+				tmp.next = list1;
+				list1 = list1.next;
+			}
+			else{
+				tmp.next = list2;
+				list2 = list2.next;
 			}
 		}
 		
 		return head;
 	}
-	*/
+	
 	
 	/**
 	 *  this function merges the two linked list recursively
@@ -106,8 +111,12 @@ public class MergeTwoSortedLinkedList<T> {
 		e.next = f;
 		Node g = new Node(18);
 		f.next = g;
+		System.out.println("----------RECURSIVE----------------");
 		Node merged = m.MergeListsRecursively(list1, list2);
 		m.printNodes(merged);
+		System.out.println("----------ITERATIVE----------------");
+		Node mergedIter = m.MergeLists(list1, list2);
+		m.printNodes(mergedIter);
 
 	}
 
