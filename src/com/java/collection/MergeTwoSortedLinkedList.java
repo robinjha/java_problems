@@ -48,28 +48,24 @@ public class MergeTwoSortedLinkedList<T> {
 	 * returns the first node of the merged list
 	 */
 	public Node MergeLists(Node list1, Node list2) {
-		Node head;
+		Node head, other, merged;
 		if(list1 == null)return list2;
 		if(list2 == null)return list1;
 		
-		if(list1.data < list2.data){
-			head = list1;
-		}
-		else{
-			head = list2;
-		}
-		Node tmp = head;
-		while(list1.next != null || list2.next != null){
-			if(list1.data <= list2.data){
-				tmp.next = list1;
-				list1 = list1.next;
-			}
-			else{
-				tmp.next = list2;
-				list2 = list2.next;
-			}
-		}
 		
+		merged = head = (list1.data <= list2.data) ? list1: list2;
+		other = (list1.data > list2.data) ? list1: list2;
+		
+		while(merged.next != null){
+			if(other.data > merged.data && other.data < merged.next.data){
+				Node temp = merged.next;
+				merged.next = other;
+				other = temp;
+				System.out.println("Node added {i}:" + other.data);
+			}
+			merged = merged.next;
+			System.out.println("Node :" + merged.data);
+		}
 		return head;
 	}
 	
