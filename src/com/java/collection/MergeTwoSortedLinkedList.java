@@ -108,8 +108,8 @@ public class MergeTwoSortedLinkedList<T> {
 		Node g = new Node(18);
 		f.next = g;
 		System.out.println("----------RECURSIVE----------------");
-		Node merged = m.MergeListsRecursively(list1, list2);
-		m.printNodes(merged);
+	//	Node merged = m.MergeListsRecursively(list1, list2);
+	//	m.printNodes(merged);
 		System.out.println("----------ITERATIVE----------------");
 		Node mergedIter = m.MergeLists(list1, list2);
 		m.printNodes(mergedIter);
