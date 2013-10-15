@@ -1,13 +1,25 @@
 package com.java.collection;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class Deque<Item> implements Iterable<Item> {
     
     private Node<Item> head;
     private int N;
     
     private static class Node<Item>{
-        private Item item;
+		private Item item;
         private Node<Item> next;
+        
+        public Node(Item item2, Node<Item> obj) {
+			item = item2;
+			next = obj;
+		}
+
+		public Node() {
+			
+		}
     } 
    
    
@@ -31,9 +43,9 @@ public class Deque<Item> implements Iterable<Item> {
    public void addFirst(Item item)    // insert the item at the front
    {
        Node<Item> old = head;
-       first = new Node<Item>();
-       first.item = item;
-       first.next = old;
+       head = new Node<Item>();
+       head.item = item;
+       head.next = old;
        N++;
    }
    
@@ -67,12 +79,12 @@ public class Deque<Item> implements Iterable<Item> {
            tmp = head.next;
        }
        prev.next = tmp.next;
-       return prev.next.item;
+       return (Item)prev.next  ;
    }
    
    public Iterator<Item> iterator()   // return an iterator over items in order from front to end
    {
-       return new DequeIterator<Item>(first);
+       return new DequeIterator<Item>(head);
    }
    
    private class DequeIterator<Item> implements Iterator<Item>{
@@ -94,6 +106,7 @@ public class Deque<Item> implements Iterable<Item> {
            if(!hasNext()) throw new NoSuchElementException();
            Item item = current.item;
            current = current.next;
+           return item;
            
        }
    }
