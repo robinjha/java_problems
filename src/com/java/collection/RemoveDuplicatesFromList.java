@@ -4,24 +4,51 @@
 
 package com.java.collection;
 
+import java.util.HashMap;
+
 
 
 public class RemoveDuplicatesFromList {
 	
+	//this is without an extra buffer
+	//runs in O(1) space but O(N^2) time
 	public void deleteDuplicates(Node n1){
 		Node head = n1;
-		Node tmp = head;
-		Node other = n1.getNext();
-		
-		while(tmp.getNext() != null){
-			while(other.getNext() != null){
-				if(tmp.getData() != other.getData()){
-					other = other.getNext();
-				}else{
-					tmp.setNext(other.getNext());
+		Node prev = head;
+		while(head != null){
+			Node runner = head.getNext();
+			while(runner != null){
+				if(head.getData() != runner.getData()){
+					prev = head.getNext();
 				}
+				else{
+					prev.setNext(runner.getNext());
+				}
+				runner = runner.getNext();
 			}
-			tmp = tmp.getNext();
+			head = head.getNext();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param n1
+	 * we just need to make a pass over the linked list once.
+	 * this solution takes O(N) time, where N is the number of the elements in the LL
+	 */
+	
+	public void deleteDuplicatesWithHashMap(Node n1){
+		HashMap<Integer, Boolean> hm = new HashMap<Integer, Boolean>();
+		Node head = null;
+		while(n1 != null){
+			if(hm.containsKey(n1.getData())){
+				head.setNext(n1.getNext());
+				
+			}else{
+				hm.put(n1.getData(), true);
+				head = n1;
+			}
+			n1 = n1.getNext();
 		}
 	}
 	
@@ -37,10 +64,14 @@ public class RemoveDuplicatesFromList {
 		b.setNext(c);
 		Node d = new Node(8);
 		c.setNext(d);
+		Node e = new Node(8);
+		d.setNext(e);
 		
 		RemoveDuplicatesFromList test = new RemoveDuplicatesFromList();
-		System.out.println("-----------------DELETING DUPLICATES---------------");
-		test.deleteDuplicates(list1);
+		//System.out.println("-----------------DELETING DUPLICATES IN PLACE---------------");
+		//test.deleteDuplicates(list1);
+		System.out.println("-----------------DELETING DUPLICATES USING HASHMAP---------------");
+		test.deleteDuplicatesWithHashMap(list1);
 		test.printNodes(list1);
 		
 	}
