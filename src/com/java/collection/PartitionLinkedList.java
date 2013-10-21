@@ -17,6 +17,8 @@ public class PartitionLinkedList {
 			}
 			head = next;
 		}
+		
+		if (beforeValHead == null)return afterValHead;
 		Node n1 = beforeValHead;
 		while(beforeValHead.getNext() != null){
 			beforeValHead = beforeValHead.getNext();
