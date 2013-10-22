@@ -16,23 +16,29 @@ public abstract class Employee {
 	public void completeCall(Call call){	
 		if(currCall != null){
 			call.disconnect();
+			currCall = null;
 		}
+		assignNewCall();
 	}
 	
-	public void reassignCall(){}
+	public void reassignCall(){
+		if(currCall != null){
+			currCall.addLevel();
+			CallHandler.getInstance().dispatchCall(this.currCall);
+			currCall = null;
+		}
+	}
 	
 	public boolean isAvailable(){
-		boolean free = false;
-		if(currCall == null){
-			free = true;
-		}else{
-			free = false;
-		}
-		return free;
-		
+		return currCall == null;
 	}
 	
-	public void assignNewCall(){}
+	public boolean assignNewCall(){
+		if(!isAvailable()){
+			return false;
+		}
+		return CallHandler.getInstance().assignCall(this);
+	}
 	
 	public void receiveCall(Call call){
 		this.currCall = call;

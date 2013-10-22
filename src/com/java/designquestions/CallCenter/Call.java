@@ -32,5 +32,15 @@ public class Call {
 		reply("Thank you for the call. Bye!!");
 	}
 	
+	public Level addLevel(){
+		if(lvl_assigned == Level.Respondent){
+			lvl_assigned = Level.Manager;
+		}else if(lvl_assigned == Level.Manager){
+			lvl_assigned = Level.Director;
+		}
+		return lvl_assigned;
+	}
+	
+	
 		
 }
