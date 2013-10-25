@@ -8,11 +8,10 @@ public class AddTwoNumbersInLL {
 		Node newHead = null;
 		int carry = 0, val = 0;
 		
-		while(n1 != null && n2 != null){
+		while(n1 != null && n2 != null && carry != 0){
 			val = n1.getData() + n2.getData()+carry;
-			if(val >= 10){
-				carry = val - 9;
-			}
+				carry = val % 10;
+			
 			val = val - carry;
 			newHead = new Node(val, newHead);
 			n1 = n1.getNext();
