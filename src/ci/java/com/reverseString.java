@@ -17,9 +17,16 @@ public class reverseString {
 		return test;
 	}
 	
+	public static String revRecursively(String str){
+		if(str.length() < 2) return str;
+		
+		return revRecursively(str.substring(1)) + str.charAt(0);
+	}
+	
 	public static void main(String[] args){
 		String test = "This is a test";
 		revStr(test);
+		System.out.println("Reversed string recursively :"+revRecursively(test));
 	}
 
 }
