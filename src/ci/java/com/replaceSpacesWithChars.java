@@ -1,3 +1,4 @@
+package ci.java.com;
 
 public class replaceSpacesWithChars {
 
