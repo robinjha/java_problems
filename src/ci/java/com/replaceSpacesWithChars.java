@@ -8,18 +8,17 @@ public class replaceSpacesWithChars {
 	
 	public static String replace(String str){
 		char[] strIntoChars = str.toCharArray();
+		int count = str.length()+ str.length();
 		char[] strReplacedCharArray = new char[str.length()+ str.length()];
-		int count = 0;
-		for(int i = 0; i < strIntoChars.length; i++){
+		
+		for(int i = strIntoChars.length -1 ; i >= 0; i--){
 			if(strIntoChars[i] == ' '){
-				strReplacedCharArray[i] = '%';
-				strReplacedCharArray[i+1] = '2';
-				strReplacedCharArray[i+2] = '0';
-				count = i+3;
+				strReplacedCharArray[--count] = '0';
+				strReplacedCharArray[--count] = '2';
+				strReplacedCharArray[--count] = '%';
 			}
 			else{
-				strReplacedCharArray[count] = strIntoChars[i];
-				count++;
+				strReplacedCharArray[--count] = strIntoChars[i];
 			}
 		}
 		String b = new String(strReplacedCharArray);// to convert char array into a string
