@@ -1,5 +1,6 @@
 package com.java.collection;
 
+
 public class PartitionLinkedList {
 	
 	public Node partitionLinkedList(Node head, int val){

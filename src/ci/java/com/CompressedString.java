@@ -1,5 +1,6 @@
+package ci.java.com;
 
-public class compressedString {
+public class CompressedString {
 
 	/**
 	 * @param args
@@ -26,6 +27,10 @@ public class compressedString {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		String test = "aabbcedddd";
+		CompressedString cs = new CompressedString();
+		cs.compression(test);
+		
 
 	}
 

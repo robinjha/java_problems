@@ -1,5 +1,6 @@
 package com.java.collection;
 
+
 public class DeleteNodeGivenNode {
 	
 	public boolean deleteNode(Node n1){

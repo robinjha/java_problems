@@ -1,5 +1,6 @@
 package com.java.collection;
 
+
 public class FindNodeInCircularList {
 	
 	public Node curroptNode(Node head){
