@@ -7,7 +7,7 @@ public class ThreeStacksUsingArray {
 	
 	public void push(int stackNum, int value) throws Exception{
 		//check if it is full
-		if(pointer[stackNum] > stackSize){
+		if(pointer[stackNum] >= stackSize){
 			throw new Exception("We have run out of space!!");
 		}
 		pointer[stackNum]++;
@@ -42,11 +42,12 @@ public class ThreeStacksUsingArray {
 		tsua.push(1,5);
 		tsua.push(1,4);
 		tsua.push(2,7);
-		tsua.push(3,9);
+		tsua.push(0,9);
 		tsua.push(2,8);
-		tsua.push(3,1);
-		System.out.println("Popped value is : " + tsua.pop(1));
-		System.out.println("Peeked value is :"+tsua.peek(1));
+		tsua.push(0,1);
+        System.out.println("Peek 2: " + tsua.peek(1));
+		System.out.println("Popped 1 value is : " + tsua.pop(1));
+		System.out.println("Peeked 1 value is :"+tsua.peek(1));
 		
 	}
 
