@@ -1,4 +1,4 @@
-package com.java.trees;
+package com.java.search;
 
 /**
  *@author robin jha
