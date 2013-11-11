@@ -1,3 +1,8 @@
+/**
+ * run time O(CN) where N is the amount to make change
+ * and C is the no of denominations
+ */
+
 package com.java.dynamicprogramming;
 
 import java.util.Scanner;
@@ -15,9 +20,7 @@ public class CoinChange {
 	       sol = new int[v.length];
 	       mySol = new int[v.length];
 
-	       /* ---------------------------
-		  Base cases
-		  --------------------------- */
+		  //Base cases		  
 	       M[0] = 0;	// 0 coins needed to make change for $0
 
 	       /* ---------------------------------------------------

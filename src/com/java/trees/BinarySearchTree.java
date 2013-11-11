@@ -4,15 +4,15 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class BinarySearchTree<T extends java.lang.Comparable<T>> {
-	
+
 	/**
-	 * A node in the tree
+	 * the node class
 	 */
 	private static class BinaryNode<T>{
 		private T item;
 		private BinaryNode<T> left;
 		private BinaryNode<T> right;
-		
+
 		/**
 		 * contructor to build a tree
 		 */
@@ -21,7 +21,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			left = null;
 			right = null;
 		}
-		
+
 		/**
 		 * contructor to build node with specified subtrees/nodes
 		 */
@@ -31,7 +31,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			right = r;
 		}
 	}
-	
+
 	private class TreeIterator implements Iterator<T>{
 		/*
 		 * variable to keep track of the iterator.
@@ -39,11 +39,11 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		protected BinaryNode<T> root = null;
 		protected Stack<BinaryNode<T>> visiting = new Stack<BinaryNode<T>>();
 		protected Stack<Boolean> visitingRightChild = new Stack<Boolean>(); 
-		
+
 		boolean preorder = false;
 		boolean inorder = true;
 		boolean postorder = false;
-		
+
 		/*
 		 * Inorder constructor
 		 */
@@ -55,7 +55,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			inorder = true;
 			postorder = false;
 		}
-		
+
 		/*
 		 * preorder constructor
 		 */
@@ -90,42 +90,42 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 				return null;
 		}
 
-			private T postorderNext() {
-        if (visiting.empty()) {	// at beginning of iterator
-            // find the leftmost node, pushing all the intermediate nodes
-            // onto the visiting stack
-            pushLeftMostChildNodeRecord(root);
-        } // the node on top of the visiting stack is the next one to be
-          // visited, unless it has a right subtree
-        if ((visiting.peek().right == null) || // no right subtree, or
-            (visitingRightChild.peek())) { // right subtree already visited
-            // already visited right child, time to visit the node on top
-            T result = visiting.pop().item;
-            visitingRightChild.pop();
-            if (visiting.empty()) {
-        	root = null;
-            }
-            return result;
-        } else { // now visit this node's right subtree
-            Boolean result = visitingRightChild.pop();
-            visitingRightChild.push(true);
-            // now push everything down to the leftmost node
-            // in the right subtree
-            BinaryNode<T> right = visiting.peek().right;
-            assert(right != null);
-            pushLeftMostChildNodeRecord(right);
-            // use recursive call to visit that node
-            return postorderNext();
-        }
-    }
-		
+		private T postorderNext() {
+			if (visiting.empty()) {	// at beginning of iterator
+				// find the leftmost node, pushing all the intermediate nodes
+				// onto the visiting stack
+				pushLeftMostChildNodeRecord(root);
+			} // the node on top of the visiting stack is the next one to be
+			// visited, unless it has a right subtree
+			if ((visiting.peek().right == null) || // no right subtree, or
+					(visitingRightChild.peek())) { // right subtree already visited
+				// already visited right child, time to visit the node on top
+				T result = visiting.pop().item;
+				visitingRightChild.pop();
+				if (visiting.empty()) {
+					root = null;
+				}
+				return result;
+			} else { // now visit this node's right subtree
+				Boolean result = visitingRightChild.pop();
+				visitingRightChild.push(true);
+				// now push everything down to the leftmost node
+				// in the right subtree
+				BinaryNode<T> right = visiting.peek().right;
+//				assert(right != null);
+				pushLeftMostChildNodeRecord(right);
+				// use recursive call to visit that node
+				return postorderNext();
+			}
+		}
+
 		private void pushLeftMostChildNodeRecord(BinaryNode<T> node) {
 			if(node != null){
 				visiting.push(node);
 				visitingRightChild.push(false);
 				pushLeftMostChildNodeRecord(node.left);
 			}
-			
+
 		}
 
 		private T inorderNext() {
@@ -134,7 +134,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			}
 			BinaryNode<T> node = visiting.pop();
 			T result = node.item;
-			
+
 			if(node.right != null){
 				BinaryNode<T> right = node.right;
 				pushLeftMostChildNodeRecord(right);
@@ -151,7 +151,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			}
 			BinaryNode<T> node = visiting.pop();
 			T result = node.item;
-			
+
 			if(node.right != null){
 				visiting.push(node.right);
 			}
@@ -167,9 +167,9 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		@Override
 		public void remove() {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 		public String toString(BinaryNode<T> node){
 			if(node == null){
 				return "";
@@ -177,7 +177,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 				return node.toString() + "(" +toString(node.left) + ", " + toString(node.right) + ")";
 			}
 		}
-		
+
 		public String toString() {
 			if (preorder) {
 				return "pre: " + toString(root) + "\n" + visiting + "\n";
@@ -193,27 +193,27 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		}
 
 	}
-	
+
 	protected BinaryNode<T> root = null;
-	
+
 	public BinarySearchTree(){
 		super();
 	}
-	
+
 	public BinarySearchTree(T value){
 		super();
 		root = new BinaryNode<T>(value);
 	}
-	
+
 	public BinarySearchTree(BinaryNode<T> newRoot){
 		super();
 		root = newRoot;
 	}
-	
+
 	public void add(T value){
 		root = add(value, root);
 	}
-	
+
 	/**
 	 * @param: value to be inserted
 	 * @param: node that is the root of the subtree in which to insert 
@@ -232,12 +232,12 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			return node;
 		}
 	}
-	
-	
+
+
 	public void remove(T value){
 		root = remove(value, root);
 	}
-	
+
 	protected BinaryNode<T> remove(T value, BinaryNode<T> node){
 		if(node == null){
 			return null;
@@ -261,9 +261,9 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		}
 		return node;
 	}
-	
+
 	protected T getRightmost(BinaryNode<T> node) {
-	//	BinaryNode<T> right = node.right;
+		//	BinaryNode<T> right = node.right;
 		if(node.right == null){
 			return node.item;
 		}else{
@@ -271,34 +271,108 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		}
 	}
 
+	protected T getLeftmost(BinaryNode<T> node) {
+		//	BinaryNode<T> right = node.right;
+		if(node.left == null){
+			return node.item;
+		}else{
+			return getLeftmost(node.left);
+		}
+	}
+	
+	public int height()
+	   {
+	      return height(root);
+	   }
+	   private int height(BinaryNode<T> p)
+	   {
+	      if(p == null) return -1;
+	      else
+	      return 1 + Math.max( height(p.left), height(p.right));
+	   }
+
+	   public int countLeaves()
+	   {
+	      return countLeaves(root);
+	   }
+	   private int countLeaves(BinaryNode<T> p)
+	   {
+	      if(p == null) return 0;
+	      else
+	      if(p.left == null && p.right == null) return 1;
+	      else
+	      return countLeaves(p.left) + countLeaves(p.right);
+	   }
+	
+	//The width of a binary tree is the maximum number of elements on one level of the tree.
+	   public int width()
+	   {
+	      int max = 0;
+	      for(int k = 0; k <= height(); k++)
+	      {
+	         int tmp = width(root, k);
+	         if(tmp > max) max = tmp;
+	      }
+	      return max;
+	   }
+	   //rerturns the number of node on a given level
+	   public int width(BinaryNode<T> p, int depth)
+	   {
+	      if(p==null) return 0;
+	      else
+	      if(depth == 0) return 1;
+	      else
+	      return width(p.left, depth-1) + width(p.right, depth-1);
+	   }
+
+	   //The diameter of a tree is the number of nodes
+	   //on the longest path between two leaves in the tree.
+	   public int diameter()
+	   {
+	      return diameter(root);
+	   }
+	   private int diameter(BinaryNode<T> p)
+	   {
+	      if(p==null) return 0;
+
+	      //the path goes through the root
+	      int len1 = height(p.left) + height(p.right) +3;
+
+	      //the path does not pass the root
+	      int len2 = Math.max(diameter(p.left), diameter(p.right));
+
+	      return Math.max(len1, len2);
+	   }
+
+
 	public Iterator<T> iterator() {
 		return new TreeIterator(root);
 	}
-	
+
 	public Iterator<T> preIterator() {
 		return new TreeIterator(root, true);
-	    }
-	
+	}
+
 	public Iterator<T> postIterator() {
 		return new TreeIterator(root, false);
-	    }
+	}
 
 	public String toString(){
 		return toString(root);
 	}
-	
+
 	protected String toString(BinaryNode<T> node){
 		if(node == null){
 			return "null";
 		}
 		return node.item.toString() + "(" + toString(node.left) + ", " +
-    toString(node.right) + ")";
+		toString(node.right) + ")";
 	}
-	
+
 	/**
 	 * main method to test iteration for different traversals
 	 */
-	
+
 	public static void main(String[] args){
 		BinarySearchTree<String> bst = new BinarySearchTree<String>();
 		bst.add("F");
@@ -310,37 +384,44 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 		bst.add("C");
 		bst.add("E");
 		bst.add("H");
-		
+
 		System.out.println(bst);
-		
-	//	bst.remove(7);
+
+		//	bst.remove(7);
 		System.out.println(bst);
-		
+
+		System.out.println("The leftmost node is :" + bst.getLeftmost(bst.root));
 		System.out.println("The rightmost node is :" + bst.getRightmost(bst.root));
-		
+
 		Iterator<String> it = bst.preIterator();
 		System.out.print("pre-order: ");
 		while (it.hasNext()) {
-		    System.out.print(it.next() + ", ");
+			System.out.print(it.next() + ", ");
 		}
 		System.out.println("");
-		
+
 		it = bst.postIterator();
 		System.out.print("post-order: ");
 		while (it.hasNext()) {
-		    System.out.print(it.next() + ", ");
+			System.out.print(it.next() + ", ");
 		}
 		System.out.println("");
 
 		it = bst.iterator();
 		System.out.print("in-order: ");
 		while (it.hasNext()) {
-		    System.out.print(it.next() + ", ");
+			System.out.print(it.next() + ", ");
 		}
 		System.out.println("");
 		
+		//testing diameter
+	      System.out.println("diameter = " + bst.diameter());
+	      //testing width
+	      System.out.println("width = " + bst.width());
+
+
 
 	}
-	
+
 
 }
