@@ -418,6 +418,8 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 	      System.out.println("diameter = " + bst.diameter());
 	      //testing width
 	      System.out.println("width = " + bst.width());
+	      
+	      System.out.println("Height =" + bst.height());
 
 
 

@@ -23,9 +23,19 @@ public class reverseString {
 		return revRecursively(str.substring(1)) + str.charAt(0);
 	}
 	
+	public static char[] stringReverseInPlace(char[] string) {
+		  for(int i = 0, j = string.length - 1; i < string.length / 2; i++, j--) {
+		    char c = string[i];
+		    string[i] = string[j];
+		    string[j] = c;
+		  }
+		  return string;
+		}
+	
 	public static void main(String[] args){
 		String test = "This is a test";
 		revStr(test);
+		System.out.println(stringReverseInPlace(test.toCharArray()));
 		System.out.println("Reversed string recursively :"+revRecursively(test));
 	}
 
