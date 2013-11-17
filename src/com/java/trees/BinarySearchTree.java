@@ -194,7 +194,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 
 	}
 
-	protected BinaryNode<T> root = null;
+	public BinaryNode<T> root = null;
 
 	public BinarySearchTree(){
 		super();

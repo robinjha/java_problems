@@ -5,11 +5,12 @@ package com.java.trees;
 public class BalancedMinimalBinarySearchTree {
 	
 	public static BinaryNode<Integer> createBalancedMinimalBST(int[] arr, int first, int last){
+		BinaryNode<Integer> root = null;
 		if(first > last){
 			return null;
 		}
 		int mid = (first+last)/2;
-		BinaryNode<Integer> root = new BinaryNode<Integer>(arr[mid], createBalancedMinimalBST(arr, first, mid-1),createBalancedMinimalBST(arr, mid+1, last) );
+		root = new BinaryNode<Integer>(arr[mid], createBalancedMinimalBST(arr, first, mid-1),createBalancedMinimalBST(arr, mid+1, last) );
 		return root;
 	}
 	

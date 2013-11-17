@@ -48,6 +48,15 @@ public class BinaryNode<T>{
 	public void setItem(T item) {
 		this.item = item;
 	}
+
+	@Override
+	public String toString() {
+//		return "BinaryNode [item=" + item + ", left=" + left + ", right="
+//				+ right + "]";
+		return "BinaryNode ["+ item+"]";
+	}
+	
+	
 	
 	
 }
