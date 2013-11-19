@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class isPalindrome {
+public class IsPalindrome {
 	
 	public static boolean isPalindromeIter(String inputString){
 		int start = 0;

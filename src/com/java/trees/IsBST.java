@@ -11,7 +11,7 @@ package com.java.trees;
  *
  */
 
-public class isBST {
+public class IsBST {
 	public static int min = Integer.MIN_VALUE;
 	/**
 	Strategy: 

@@ -12,7 +12,44 @@ public class CompressedString {
 	 * putting the # of against each new character
 	 * @param str
 	 * @return
+	 * 
+	 * test cases
+	 * aaaabbcdd
+		a4b2c1d2
+		
+		11223444
+		
+		Testcases:
+		1) aabaa 
+		
+		2) abc
+		a1b1c1
+		
+		3) Empty string ""
+		
+		4) aaa-1b# 
+		
+		5) AaabbBB
+		
+		6) "aaaa  bbb ccc"
+		
+		7) "!!!!!@@@$$"
+		    !6@3$2
+		    
+		8) 22333
+		   2233
+		   
+		   111111111111111
+		   112
+		   abababab 
+		   
+		
+		abc    a1b1c1
+		aabaa a2b1a2
+	 * 
 	 */
+	
+	
 	
 	public String compression(String str){
 		int position = 0;

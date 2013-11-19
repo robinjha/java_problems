@@ -1,6 +1,6 @@
 package ci.java.com;
 
-public class replaceSpacesWithChars {
+public class ReplaceSpacesWithChars {
 
 	/**
 	 * @param args
