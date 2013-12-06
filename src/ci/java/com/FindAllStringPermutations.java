@@ -1,5 +1,12 @@
 package ci.java.com;
 
+/**
+ * 
+ * @author robin
+ * complexity is O(N!) because there are N! possible permutations of a string with length N, so it’s optimal. 
+ *
+ */
+
 public class FindAllStringPermutations {
 	
 	public static void stringPerm(String prefix, String str){
