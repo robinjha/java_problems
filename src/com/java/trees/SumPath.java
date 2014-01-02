@@ -59,7 +59,9 @@ public class SumPath {
 		root.getRight().setLeft(new BinaryNode<Integer>(2));
 		root.getRight().setRight(new BinaryNode<Integer>(6));
 		
+		System.out.println("Possible Paths are: ");
 		findSum(root, 8);
+		
 
 	}
 
