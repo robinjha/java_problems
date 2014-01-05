@@ -48,27 +48,49 @@ public class CompressedString {
 		aabaa a2b1a2
 	 * 
 	 */
-	
-	
-	
 	public String compression(String str){
-		int position = 0;
-		char[] strArr = new char[str.length()];
-		for(int i = 0; i < str.length(); i++){
-			if(str[i] != str[i+1]){
-				position = i;
-				strArr[i] = str[i];
-				
+		if(str.length() == 0)
+			return null;
+		
+		if(str.length() == 1)
+			return str;
+		
+		StringBuilder sb = new StringBuilder("");
+		char start = str.charAt(0);
+		int count = 1;
+		for(int i = 1; i < str.length(); i++){
+			if(str.charAt(i) == start)
+				count++;
+			else{
+				sb.append(start);
+				sb.append(count);
+				start = str.charAt(i);
+				count = 1;
 			}
 		}
+		sb.append(start);
+		sb.append(count);
+		return sb.toString();
 	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String test = "aabbcedddd";
 		CompressedString cs = new CompressedString();
-		cs.compression(test);
+		System.out.println(cs.compression(test));
 		
 
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
