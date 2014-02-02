@@ -17,7 +17,7 @@ public class Solution {
     	for(int i = 0; i < count; i++){
     		Scanner s = new Scanner(System.in);
     		String str = s.nextLine();
-    		str.
+    		
     	}
         
     }
