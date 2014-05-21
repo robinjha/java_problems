@@ -25,7 +25,14 @@ public class FindTargetIn2DArray {
 
 	 */
 	public static boolean findTarget(int[][] arr, int key){
-		
+		int low = 0, high = arr.length - 1;
+		while(low < high){
+			int mid = low + (high - low)/2;
+			if(key == arr[mid][0])
+				return true;
+			else if(key > arr[mid][0])
+				low = arr[mid+1][0];
+		}
 		return false;
 
 	}

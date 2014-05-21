@@ -15,6 +15,9 @@ public class FindTargetValue {
 	 */
 	
 	public static boolean checkTargetValueMatch(int[] values, int target){
+		if(values.length == 0 || values == null){
+			
+		}
 		boolean var = false;
 		Arrays.sort(values);
 		System.out.println("Sorted Array is :" + Arrays.toString(values));
@@ -22,8 +25,9 @@ public class FindTargetValue {
 		while(i < j){
 			if(values[i]+values[j] == target){
 				System.out.println("The values are :" +values[i] +" and "+ values[j]);
-				i++;
-				j--;
+				//i++;
+				//j--;
+				return true;
 			}else if(values[i]+values[j] > target){
 				j--;
 			}else{
@@ -31,14 +35,14 @@ public class FindTargetValue {
 			}
 		}
 		
-		return var;
+		return false;
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] arrValues = new int[]{1,4,2,3,8,6,5,7,12};
 		int target = 12;
-		checkTargetValueMatch(arrValues, target);
+		System.out.println(checkTargetValueMatch(arrValues, target));
 	}
 	
 
