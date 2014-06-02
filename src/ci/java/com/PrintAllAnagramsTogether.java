@@ -2,6 +2,9 @@
  * Given an array of words, print all anagrams together. 
  * For example, if the given array is {“cat”, “dog”, “tac”, “god”, “act”}, 
  * then output may be “cat tac act dog god”.
+ * 
+ * Time Complexity: Let there be N words and each word has maximum M characters. The upper bound is O(NMLogM).
+ * Sorting a word takes maximum O(MLogM) time. So sorting N words takes O(NMLogM) time. 
  */
 
 package ci.java.com;
