@@ -69,9 +69,10 @@ public class IsPalindrome {
 		System.out.println("-----------Enter the string-----------");
 		
 		inputString = sc.nextLine();
+		inputString = inputString.toLowerCase();
 		//isPalindromeIter(inputString);
 		//isPalindromeQS(inputString);
-		System.out.println(inputString +" is Palindrome :" +isPalindromeRec(inputString));
+		System.out.println(inputString +" is palindrome ? " +isPalindromeRec(inputString));
 	}
 
 }
