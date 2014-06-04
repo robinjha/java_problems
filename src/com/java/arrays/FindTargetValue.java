@@ -40,8 +40,8 @@ public class FindTargetValue {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arrValues = new int[]{1,4,2,3,8,6,5,7,12};
-		int target = 12;
+		int[] arrValues = new int[]{3,2,6,2,0,5,3,8,7,10};
+		int target = 10;
 		System.out.println(checkTargetValueMatch(arrValues, target));
 	}
 	
