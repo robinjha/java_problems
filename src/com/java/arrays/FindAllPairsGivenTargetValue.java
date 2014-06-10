@@ -23,7 +23,7 @@ public class FindAllPairsGivenTargetValue {
 			if(numMap.containsKey(i)){
 				System.out.println(i +" "+ numMap.get(i));
 			}else{
-				numMap.put(target - i, i);
+				numMap.put(target - i, i); // storing the complement 
 			}
 			
 		}

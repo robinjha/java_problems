@@ -24,6 +24,42 @@ public class MergeTwoArrays {
 		}
 		System.out.println("Merged Array is :" + Arrays.toString(largeArr));
 	}
+	
+	public static int[] merge(int[] a, int[] b) {
+
+	    int[] answer = new int[a.length + b.length];
+	    int i = 0, j = 0, k = 0;
+	    while (i < a.length && j < b.length)
+	    {
+	        if (a[i] < b[j])
+	        {
+	            answer[k] = a[i];
+	            i++;
+	        }
+	        else
+	        {
+	            answer[k] = b[j];
+	            j++;
+	        }
+	        k++;
+	    }
+
+	    while (i < a.length)
+	    {
+	        answer[k] = a[i];
+	        i++;
+	        k++;
+	    }
+
+	    while (j < b.length)
+	    {
+	        answer[k] = b[j];
+	        j++;
+	        k++;
+	    }
+
+	    return answer;
+	}
 	/*
 	 * test code
 	 */
@@ -31,6 +67,8 @@ public class MergeTwoArrays {
 		// TODO Auto-generated method stub
 		int smallArr[] = new int[]{0,2,4,6,8}; //n = 5
 		int largeArr[] = new int[12];//{1,3,5,7,9,11,13};  m = 7 (m+n) = 11
+		int[] arrA = {};
+		int[] arrB = {2,4,6};
 		int counter = 0;
 		
 		for(int i = 1; i <= 13; i=i+2){
@@ -39,7 +77,9 @@ public class MergeTwoArrays {
 		}
 		
 		
-		merge(smallArr, largeArr, counter);
+		//merge(smallArr, largeArr, counter);
+		int[] arrResult = merge(arrA, arrB);
+		System.out.println(Arrays.toString(arrResult));
 	}
 
 }

@@ -63,6 +63,18 @@ public class IsPalindrome {
 		return true;
 	}
 	
+	
+	/**
+	 * this will take care of punctuations, uppercase, spaces, etc. 
+	 * Most efficient solution
+	 * @param arg
+	 * @return
+	 */
+	public static boolean isPalindromeString(String arg) {
+        return arg.replaceAll("[^A-Za-z]", "").equalsIgnoreCase(new StringBuilder(arg).reverse().toString().replaceAll("[^A-Za-z]", ""))  ? true : false;
+  }
+	
+	
 	public static void main(String[] args){
 		String inputString;
 		Scanner sc = new Scanner(System.in);
@@ -72,7 +84,17 @@ public class IsPalindrome {
 		inputString = inputString.toLowerCase();
 		//isPalindromeIter(inputString);
 		//isPalindromeQS(inputString);
-		System.out.println(inputString +" is palindrome ? " +isPalindromeRec(inputString));
+		//System.out.println(inputString +" is palindrome ? " +isPalindromeRec(inputString));
+		System.out.println(inputString +" is palindrome ? " +isPalindromeString(inputString));
 	}
 
 }
+
+
+
+
+
+
+
+
+
