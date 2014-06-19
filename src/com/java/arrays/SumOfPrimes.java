@@ -28,8 +28,12 @@ import java.util.Set;
 public class SumOfPrimes {
 	
 	public static boolean sumOfPrimes(int[][] arr){
-		
 		boolean isSumOfPrimes = false;
+		if(!isUnique(arr)){
+			System.out.println("The elements are not unique");
+			return false;
+		}
+		
 		int diagonal1 = 0;
 		int diagonal2 = 0;
 		int count = arr.length - 1;
@@ -75,7 +79,7 @@ public class SumOfPrimes {
 
 	public static void main(String[] args) {
 		
-		int[][] m = { { 01, 03, 07 }, { 23, 05, 19 }, { 17, 11, 13 } };
+		int[][] m = { { 01, 02, 06 }, { 23, 02, 19 }, { 17, 11, 13 } };
 		System.out.println(sumOfPrimes(m));
 
 	}
