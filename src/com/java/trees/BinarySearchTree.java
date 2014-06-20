@@ -4,7 +4,8 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class BinarySearchTree<T extends java.lang.Comparable<T>> {
-
+	public static int count = 0;
+	public static int count1 = 0;
 	/**
 	 * the node class
 	 */
@@ -331,6 +332,7 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 	   {
 	      return diameter(root);
 	   }
+	   
 	   private int diameter(BinaryNode<T> p)
 	   {
 	      if(p==null) return 0;
@@ -343,7 +345,39 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 
 	      return Math.max(len1, len2);
 	   }
+	   
+	   /**
+	    * traverse right, center and left. Inorder in opposite direction
+	    * @return
+	    */
+	   public void findKthLargest(BinaryNode<T> root, int k){
+		   if(root != null){
+			   findKthLargest(root.right,k);
+			   count++;
+			   if(count == k){
+				   System.out.println(k +" largest : "+root.item);
+				   //return root.item;
+			   }
+			   findKthLargest(root.left, k);
+		   }
+		   //return null;
+	   }
 
+	   /**
+	    * traverse left, center and right. Inorder traversal
+	    * @return
+	    */
+	   public void findKthSmallest(BinaryNode<T> root, int k){
+		  
+		   if(root != null){
+			   findKthSmallest(root.left,k);
+			   count1++;
+			   if(count1 == k){
+				   System.out.println(k +" smallest : "+root.item);
+			   }
+			   findKthSmallest(root.right, k);
+		   }
+	   }
 
 	public Iterator<T> iterator() {
 		return new TreeIterator(root);
@@ -421,8 +455,9 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 	      
 	      System.out.println("Height =" + bst.height());
 
-
-
+	      bst.findKthLargest(bst.root, 4);
+	 
+	      bst.findKthSmallest(bst.root, 3);
 	}
 
 
