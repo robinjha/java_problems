@@ -50,11 +50,7 @@ public class Pagenation {
 		StringBuilder sb = new StringBuilder();
 
 		if(startPage <= 0){
-			
 			endPage -= (startPage -1);
-			/*if(endPage < NUM_VISIBLE_PAGES - 1){
-				endPage = NUM_VISIBLE_PAGES - 1;
-			}*/
 			startPage = 1;
 		}
 
