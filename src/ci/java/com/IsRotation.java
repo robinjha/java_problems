@@ -23,5 +23,7 @@ public class IsRotation {
 		System.out.println("Is Rotation of Original String :"+isRotation("water", "erwat"));
 
 	}
+	
+	
 
 }
