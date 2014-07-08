@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class RemoveElementFromArrayAndShiftElements {
 	
+	/**
+	 * time complexity is O(n) where n is the lenght of the arr. 
+	 * @param sortedArr
+	 * @param value
+	 * @return
+	 */
 	public static int[] removeElements(int[] sortedArr, int value){
 		int startIndex = 0;
 		for(int i = 0; i < sortedArr.length; i++){
@@ -12,6 +18,11 @@ public class RemoveElementFromArrayAndShiftElements {
 				//sortedArr[i] = 0;
 			}
 		}
+		return sortedArr;
+	}
+	
+	public static int[] removeDuplicateElements(int[] sortedArr, int value){
+		
 		return sortedArr;
 	}
 
