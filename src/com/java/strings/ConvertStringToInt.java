@@ -18,6 +18,17 @@ public class ConvertStringToInt {
 			
 			int num = 1234;   
 			String str = String.valueOf(num);
+			1.   Start number at 0
+
+            2.   If the first character is '-'
+                       Set the negative flag
+                       Start scanning with the next character
+              For each character in the string 
+                       Multiply number by 10
+                       Add( digit number - '0' ) to number
+                If  negative flag set
+                       Negate number
+             Return number
 
 
 		 */
