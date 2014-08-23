@@ -35,24 +35,6 @@ public class ReverseStack {
 			System.out.println(rev);
 		}
 		
-		/*int count = s.size();
-
-        Stack<Integer> t = new Stack<Integer>();
-
-        while (count-- > 0)
-        {
-            int v = s.pop();
-            int n = 0;
-            while(n++ < count) t.push(s.pop());
-            s.push(v);
-            while (!t.isEmpty()) s.push(t.pop());
-        }
-
-        System.out.println("REVERSED STACK");
-        for(Integer rev: s){
-			System.out.println(rev);
-		}*/
-        
         return s;
 	}
 
