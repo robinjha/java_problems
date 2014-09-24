@@ -12,7 +12,7 @@ package com.java.arrays;
 public class LargestSumSubarray {
 	
 	public static int[] largestSumArray(int[] arr){
-		int[] a = new int[arr.length];
+		//int[] a = new int[arr.length];
 		
 		int start = 0;
 		int end = 0;

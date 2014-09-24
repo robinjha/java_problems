@@ -21,6 +21,11 @@ public class StdOut {
         out.flush();
     }
 
+    public static void print(String x) {
+        out.print(x);
+        out.flush();
+    }
+    
     public static void print(int x) {
         out.print(x);
         out.flush();

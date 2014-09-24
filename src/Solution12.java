@@ -42,7 +42,8 @@ public class Solution12 {
 	public static void main(String[] args) {
 		System.out.println(isCapital("this is a test"));
 		System.out.println((int)'a' +""+(int)'A');
-
+	
+		//System.out.println("Mod " + 12%4 + "div " + 12/4);
 	}
 
 }

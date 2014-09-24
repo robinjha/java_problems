@@ -1,9 +1,16 @@
 package com.java.sort;
 
-public class MergeSort {
+public class MergeSortBU {
 
+    // This class should not be instantiated.
+    private MergeSortBU() { }
 
+    // stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
     private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+
+        // precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
+        //assert isSorted(a, lo, mid);
+        //assert isSorted(a, mid+1, hi);
 
         // copy to aux[]
         for (int k = lo; k <= hi; k++) {
@@ -19,28 +26,29 @@ public class MergeSort {
             else                           a[k] = aux[i++];
         }
 
+        // postcondition: a[lo .. hi] is sorted
+        //assert isSorted(a, lo, hi);
     }
 
     // mergesort a[lo..hi] using auxiliary array aux[lo..hi]
-    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
-        if (hi <= lo) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, aux, lo, mid);
-        sort(a, aux, mid + 1, hi);
-        merge(a, aux, lo, mid, hi);
-    }
-
-    /**
-     * Rearranges the array in ascending order, using the natural order.
-     * @param a the array to be sorted
-     */
     public static void sort(Comparable[] a) {
-        Comparable[] aux = new Comparable[a.length];
-        sort(a, aux, 0, a.length-1);
-       
-        
+        int N = a.length;
+        Comparable[] aux = new Comparable[N];
+        for (int n = 1; n < N; n = n+n) {
+            for (int i = 0; i < N-n; i += n+n) {
+                int lo = i;
+                int m  = i+n-1;
+                int hi = Math.min(i+n+n-1, N-1);
+                merge(a, aux, lo, m, hi);
+            }
+        }
     }
 
+
+   /***********************************************************************
+    *  Helper sorting functions
+    ***********************************************************************/
+    
     // is v < w ?
     private static boolean less(Comparable v, Comparable w) {
         return (v.compareTo(w) < 0);
@@ -61,7 +69,7 @@ public class MergeSort {
      */
     public static void main(String[] args) {
         String[] a = {"this","is","a","test"};
-        MergeSort.sort(a);
+        MergeSortBU.sort(a);
         show(a);
     }
 }

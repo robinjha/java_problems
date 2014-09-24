@@ -233,6 +233,30 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 			return node;
 		}
 	}
+	
+	
+	public BinaryNode<T> mirrorTree(BinaryNode<T> root){
+		if(root == null) return null;
+		mirrorTree(root.left);
+		mirrorTree(root.right);
+		BinaryNode tmp = root.left;
+		root.left = root.right;
+		root.right = tmp;
+		return root;
+	}
+	
+	public BinaryNode<T> sortedArrayToBST(int[] arr, int start, int end){
+		if(start > end) return null;
+		int mid = start+(end - start)/2;
+		BinaryNode node = new BinaryNode(arr[mid]);
+		node.left = sortedArrayToBST(arr, 0, mid);
+		node.right = sortedArrayToBST(arr, mid+1, end);
+		return node;
+	}
+	
+public BinaryNode<T> sortedArrayToBST(int[] arr, int n){
+		return sortedArrayToBST(arr, 0, n-1);
+	}
 
 
 	public void remove(T value){
@@ -458,6 +482,8 @@ public class BinarySearchTree<T extends java.lang.Comparable<T>> {
 	      bst.findKthLargest(bst.root, 4);
 	 
 	      bst.findKthSmallest(bst.root, 3);
+	      
+	      bst.toString(bst.mirrorTree(bst.root));
 	}
 
 

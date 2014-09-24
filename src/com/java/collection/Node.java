@@ -4,6 +4,7 @@ package com.java.collection;
 public  class Node{
 	private Node next;
 	private int data;
+	private Node random;
 	
 	public Node(int n){
 		data = n;
@@ -11,6 +12,12 @@ public  class Node{
 	public Node(int d, Node n){
 		next = n;
 		data = d;
+	}
+	
+	public Node(int d, Node n, Node r){
+		next = n;
+		data = d;
+		random = r;
 	}
 	
 	public int getData(){
@@ -27,5 +34,11 @@ public  class Node{
 	
 	public void setNext(Node n){
 		next = n;
+	}
+	public Node getRandom() {
+		return random;
+	}
+	public void setRandom(Node random) {
+		this.random = random;
 	}
 }

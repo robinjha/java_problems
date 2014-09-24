@@ -7,6 +7,17 @@ public class Digraph{
     private Bag<Integer>[] adj;
     private int V;
     private int E;
+    
+    public Digraph(int V){
+    	if(V < 0) throw new IllegalArgumentException("Number needs to be positive");
+    	this.V = V;
+    	this.E = 0;
+    	adj = new Bag[V];
+    	for(int v = 0; v < V; v++){
+    		adj[v] = new Bag<Integer>();
+    	}
+    	
+    }
  
     public Digraph(ReadInput in){
         try{
