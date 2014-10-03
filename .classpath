@@ -9,5 +9,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/robin/Documents/workspace/java_problems/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
