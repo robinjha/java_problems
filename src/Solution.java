@@ -103,13 +103,50 @@ public class Solution {
 	}
 		
 
-	public static void main(String[] args) {
-		ArrayList<Solution> invls = new ArrayList<Solution>();
-		
-
-	}
-
-
+	/**
+     * Count the maximum depth of parenthesis nesting, i.e. "abc(123(xyz)m(((n)))o)" -> 3.
+     *
+     case 1
+     * LP - 1 +1 = 2
+     
+     
+     * RP - 2
+     
+     
+     * @param input
+     *            any string
+     * @return deepest parenthesization level
+	 * @throws Exception 
+     */
+     
+    
+    public static int nestedParenthesisDepth(String input)
+            throws Exception {
+            if(input == null) throw new Exception();
+            if(input.length() == 1) return -1;
+            int maxcount = 0, count = 0;
+            for(int i = 0; i < input.length();i++){
+                if(input.charAt(i) == '('){
+                    count++;
+                }else if(input.charAt(i)==')'){
+                    count--;
+                    
+                }
+                if(count < 0 ){return -1;}
+                if(count > maxcount){
+                    maxcount = count;
+                }
+                
+            }//for loop
+            if(count != 0) return -1;
+        return maxcount;
+    }
 	
+    public static void main(String[] args) throws Exception{
+    	System.out.println(nestedParenthesisDepth("abc(123(xyz)m(((n)))o)"));
+    	System.out.println(nestedParenthesisDepth("a)b(c"));
+    	System.out.println(nestedParenthesisDepth("a(b"));
+    	
+    }
 
 }

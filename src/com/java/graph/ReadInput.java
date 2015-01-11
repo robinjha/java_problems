@@ -1,4 +1,4 @@
-package com.java.graphs;
+package com.java.graph;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.net.URL;
 import java.net.URLConnection;
+
 
 public class ReadInput {
 	private Scanner scanner;
@@ -18,6 +19,11 @@ public class ReadInput {
 	public int readInt() {
         return scanner.nextInt();
     }
+	
+	public String readString(){
+		return scanner.next();
+	}
+	
 	
 	
 	public ReadInput(File file) {
@@ -37,21 +43,12 @@ public class ReadInput {
                 scanner = new Scanner(file);
                 return;
             }
-
-            // next try for files included in jar
-            URL url = getClass().getResource(s);
-
-            // or URL from web
-            if (url == null) { url = new URL(s); }
-            URLConnection site = url.openConnection();
-            InputStream is     = site.getInputStream();
-            scanner            = new Scanner(new BufferedInputStream(is));
         }
         catch (IOException ioe) {
             System.err.println("Could not open " + s);
         }
     }
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

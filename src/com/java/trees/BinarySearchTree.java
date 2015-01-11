@@ -426,6 +426,54 @@ public BinaryNode<T> sortedArrayToBST(int[] arr, int n){
 		return node.item.toString() + "(" + toString(node.left) + ", " +
 		toString(node.right) + ")";
 	}
+	
+	/**
+	 * function to print zig-zag level order
+	 * @param root
+	 * @param level
+	 * @param dir
+	 */
+	public void printGivenLevel(BinaryNode root, int level, boolean dir){
+	    if(root == null)
+	        return;
+	     if(level == 1)
+	         System.out.print(root.item);
+	     else if(level > 1){
+	         if(dir){
+	             printGivenLevel(root.left, level -1, dir);
+	             printGivenLevel(root.right, level -1, dir);
+	         }else{
+	             printGivenLevel(root.right, level -1, dir);
+	             printGivenLevel(root.left, level -1, dir);
+	         }    
+	     }
+	}
+
+	public void printTree(BinaryNode<T> root){
+	    int h = height(root);
+	    int i;
+	    
+	    boolean ltr = false;
+	    for(i= 1; i <= h ; i++){
+	        printGivenLevel(root, i, ltr);
+	        if(ltr == true){
+	        	ltr = false;
+	        }else{
+	        	ltr = true;
+	        }
+	    }
+	}
+	
+	//--------------------------
+	/**
+	 * print tree in vertical
+	 */
+	public void printVertical(BinaryNode<T> root){
+		
+	}
+	
+	
+	//--------------------------
 
 	/**
 	 * main method to test iteration for different traversals
@@ -444,6 +492,8 @@ public BinaryNode<T> sortedArrayToBST(int[] arr, int n){
 		bst.add("H");
 
 		System.out.println(bst);
+		System.out.println("~~~~~~~~~~~~~~~");
+		bst.printTree(bst.root);
 
 		//	bst.remove(7);
 		System.out.println(bst);
@@ -484,6 +534,7 @@ public BinaryNode<T> sortedArrayToBST(int[] arr, int n){
 	      bst.findKthSmallest(bst.root, 3);
 	      
 	      bst.toString(bst.mirrorTree(bst.root));
+	      
 	}
 
 

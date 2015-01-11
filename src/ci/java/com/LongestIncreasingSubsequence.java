@@ -54,6 +54,7 @@ public class LongestIncreasingSubsequence {
 		for(int k = 0; k < prev.length; k++){
 			System.out.print("\t" + prev[k]);
 		}
+		System.out.println();
 		return maxLen;
 	}
 

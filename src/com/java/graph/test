@@ -1,0 +1,45 @@
+The current graph: 
+    D -> [E]
+    E -> [F]
+    F -> []
+    A -> [B, B, C]
+    B -> [B, C, C, D]
+    C -> []
+In-degrees: {D=1, E=1, F=1, A=0, B=3, C=3}
+Out-degrees: {D=1, E=1, F=0, A=3, B=4, C=0}
+A topological sort of the vertices: null
+The graph is not a dag
+Cycle created
+The current graph: 
+    D -> [E]
+    E -> [F]
+    F -> []
+    A -> [B, B, C]
+    B -> [B, C, C, D]
+    C -> []
+A topological sort of the vertices: null
+The graph is not a dag
+--------------------------
+The current graph: 
+    0 -> [1, 2, 3]
+    1 -> [2, 3]
+    2 -> [3, 4]
+    3 -> []
+    4 -> [5]
+    5 -> [6]
+    6 -> []
+In-degrees: {0=0, 1=1, 2=2, 3=3, 4=1, 5=1, 6=1}
+Out-degrees: {0=3, 1=2, 2=2, 3=0, 4=1, 5=1, 6=0}
+A topological sort of the vertices: [0, 1, 2, 4, 5, 6, 3]
+The graph is a dag
+Cycle created
+The current graph: 
+    0 -> [1, 2, 3]
+    1 -> [2, 3]
+    2 -> [3, 4]
+    3 -> []
+    4 -> [5]
+    5 -> [6]
+    6 -> []
+A topological sort of the vertices: [0, 1, 2, 4, 5, 6, 3]
+The graph is a dag
