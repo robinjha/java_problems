@@ -1,56 +1,69 @@
 package com.java.graph;
 
-import java.util.TreeSet;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
-public class NodeImpl<T> implements Node<T>,Comparable<Node>{
+public class NodeImpl<T extends Comparable<T>> implements Node<T>{
 	
-	private String name;
-	private Set<Node<T>> children = new TreeSet<Node<T>>();
+	private T name;
+	private Set<Node<T>> children = new HashSet<Node<T>>();
 	
-	public NodeImpl(String name){
+	public NodeImpl(T name){
 		this.name = name;
 	}
 	
-	@Override
-	public String name() {
-		return name;
+	public NodeImpl(Node<T> parent, Node<T> child){
+		this.children.add(child);
 	}
 
-	@Override
 	public Set<Node<T>> children() {
 		return children;
 	}
 	
-	public void addChildren(List<String> childs){
-		for(Node<T> child: children){
-			if(!children.contains(child)){
-				children.add(child);
-				
-			}
-		}
+	public void addChildren(Node<T> child){
+		children.add(child);
+	}
+
+	public int getChildrenCount(){
+		return this.children.size();
+	}
+	
+	public int compareTo(T value) {
+		return this.name.compareTo(name);
+	}
+
+	public T name() {
+		return this.name;
 	}
 	
 	@Override
-	/*public String toString() {
-		return "NodeImpl [name=" + name + ", children=" + children + "]";
-	}*/
-	
-	public String toString(){ 
-		return name; 
-	}
-	
-	
-	public static void main(String[] args) {
-		
-
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
 	@Override
-	public int compareTo(Node arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NodeImpl<?> other = (NodeImpl<?>) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return  name.toString();
 	}
 	
 

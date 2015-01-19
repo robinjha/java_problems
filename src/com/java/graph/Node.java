@@ -11,6 +11,6 @@ import java.util.Set;
  *
  */
 public interface Node<T> {
-    public String name();
+    public T name();
     public Set<Node<T>> children();
 }
