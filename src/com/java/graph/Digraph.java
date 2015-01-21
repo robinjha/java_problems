@@ -156,10 +156,29 @@ public class Digraph<T> {
         return distance;
     }
     
-   
-   public Map<Node<T>, List<Node<T>>> findConnections(Node<T> start, int depth){
-	   Map<Node<T>,Integer> distance = new HashMap<Node<T>,Integer>();
-       return null;
+    
+   /**
+    * find connections given depth
+    * @param start
+    * @param depth
+    * @return
+    */
+  
+public Map<Node<T>, List<Node<T>>> findConnections(T start, int depth){
+	   Map<T,Integer> distance = new HashMap<T,Integer>();
+	   Map<Node<T>, List<Node<T>>> nodes = new HashMap<Node<T>, List<Node<T>>>();
+	   List<Node<T>> vals = new ArrayList<Node<T>>(); 
+	   for (T v: neighbors.keySet()){
+		   distance = bfsDistance(v);
+		   for(Map.Entry<T, Integer> entry : distance.entrySet()){
+			   if(entry.getValue().intValue() >= 0){
+				   vals.add((Node<T>) entry.getKey());
+			   }
+		   }
+		   nodes.put((Node<T>) v, vals);
+	   }
+	   
+	   return nodes;
    }
 
     
@@ -189,6 +208,8 @@ public class Digraph<T> {
         graph.add(C, E); 
         graph.add(E, F);
         graph.add(F, G);
+        graph.add(G,D);//added
+        graph.add(D,A);//added
         System.out.println("The current graph: " + graph);
         System.out.println("In-degrees: " + graph.inDegree());
         System.out.println("Out-degrees: " + graph.outDegree());
@@ -203,6 +224,7 @@ public class Digraph<T> {
         System.out.println("The current graph: " + graph);
         System.out.println("A topological sort of the vertices: " + graph.topSort());
         System.out.println("The graph " + (graph.isDag()?"is":"is not") + " a dag");
+        System.out.println("Find connections for depth" + graph.findConnections(A, 2));
         System.out.println("Children is : " + A.getChildrenCount());
       //  System.out.println("BFS distances starting from " + 2 + ": " + graph.bfsDistance(2));
     }
