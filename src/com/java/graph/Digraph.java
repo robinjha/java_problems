@@ -135,7 +135,7 @@ public class Digraph<T> {
      * The distance is an Integer; the value null is used to represent infinity
      * (implying that the corresponding node cannot be reached).
      */
-    public Map<T, Integer> bfsDistance (T start) {
+    public Map<T, Integer> bfsDistance (T start, int depth) {
         Map<T,Integer> distance = new HashMap<T,Integer>();
         // Initially, all distance are infinity, except start node
         for (T v: neighbors.keySet()) distance.put(v, null);
@@ -143,35 +143,39 @@ public class Digraph<T> {
         // Process nodes in queue order
         Queue<T> queue = new LinkedList<T>();
         queue.offer(start);                                    // Place start node in queue
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty() && depth >= 0) {
             T v = queue.remove();
             int vDist = distance.get(v);
+            
             // Update neighbors
             for (T neighbor: neighbors.get(v)) {
                 if (distance.get(neighbor) != null) continue;  // Ignore if already done
                 distance.put(neighbor, vDist + 1);
                 queue.offer(neighbor);
             }
+            depth--;
         }
         return distance;
     }
     
     
    /**
-    * find connections given depth
-    * @param start
-    * @param depth
+    * Find connections given depth. Gets all the nodes in the graph and runs 
+    * bfs on them for the passed depth parameter. 
+    * @param start - start node
+    * @param depth - depth of the connections
     * @return
     */
   
 public Map<Node<T>, List<Node<T>>> findConnections(T start, int depth){
 	   Map<T,Integer> distance = new HashMap<T,Integer>();
 	   Map<Node<T>, List<Node<T>>> nodes = new HashMap<Node<T>, List<Node<T>>>();
-	   List<Node<T>> vals = new ArrayList<Node<T>>(); 
+	   List<Node<T>> vals = null;
 	   for (T v: neighbors.keySet()){
-		   distance = bfsDistance(v);
+		   vals = new ArrayList<Node<T>>(); 
+		   distance = bfsDistance(v, depth);
 		   for(Map.Entry<T, Integer> entry : distance.entrySet()){
-			   if(entry.getValue().intValue() >= 0){
+			   if(entry.getValue() != null && entry.getValue() <= depth){
 				   vals.add((Node<T>) entry.getKey());
 			   }
 		   }
@@ -215,7 +219,7 @@ public Map<Node<T>, List<Node<T>>> findConnections(T start, int depth){
         System.out.println("Out-degrees: " + graph.outDegree());
         System.out.println("A topological sort of the vertices: " + graph.topSort());
         System.out.println("The graph " + (graph.isDag()?"is":"is not") + " a dag");
-        System.out.println("BFS distances starting from " + 0 + ": " + graph.bfsDistance(A));
+        System.out.println("BFS distances starting from " + 0 + ": " + graph.bfsDistance(A,2));
       //  System.out.println("BFS distances starting from " + 1 + ": " + graph.bfsDistance(1));
        // System.out.println("BFS distances starting from " + 2 + ": " + graph.bfsDistance(2));
         //graph.add(4, 1);                                     // Create a cycle
