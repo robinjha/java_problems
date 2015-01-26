@@ -83,6 +83,14 @@ public class Digraph<T> {
     }
     
     /**
+     * 
+     */
+    public List<Node<T>> nodesInTheGraph(){
+    	List<Node<T>>
+    	return 
+    }
+     
+    /**
      * Report (as a Map) the in-degree of each vertex.
      */
     public Map<T,Integer> inDegree () {
@@ -94,6 +102,14 @@ public class Digraph<T> {
             }
         }
         return result;
+    }
+    
+    /**
+     * Return total number of nodes in the graph 
+     * @return
+     */
+    public int nodeCount(){
+    	return neighbors.size();
     }
     
     /**
@@ -167,23 +183,66 @@ public class Digraph<T> {
     * @return
     */
   
-public Map<Node<T>, List<Node<T>>> findConnections(T start, int depth){
+@SuppressWarnings("unchecked")
+public Map<Node<T>, Map<T,Integer>> findConnections(T start, int depth){
 	   Map<T,Integer> distance = new HashMap<T,Integer>();
-	   Map<Node<T>, List<Node<T>>> nodes = new HashMap<Node<T>, List<Node<T>>>();
-	   List<Node<T>> vals = null;
+	   Map<T,Integer> connections = null;
+	   Map<Node<T>, Map<T,Integer>> nodes = new HashMap<Node<T>, Map<T,Integer>>();
+	  // List<Node<T>> vals = null;
+	   
 	   for (T v: neighbors.keySet()){
-		   vals = new ArrayList<Node<T>>(); 
+		   //vals = new ArrayList<Node<T>>(); 
+		   connections = new HashMap<T,Integer>();
 		   distance = bfsDistance(v, depth);
 		   for(Map.Entry<T, Integer> entry : distance.entrySet()){
-			   if(entry.getValue() != null && entry.getValue() <= depth){
-				   vals.add((Node<T>) entry.getKey());
+			   if(entry.getValue() != null && entry.getValue() <= depth && entry.getKey() != v){ // add the check to make sure the node itself is not added 
+				  // vals.add((Node<T>) entry.getKey());
+				   connections.put(entry.getKey(), entry.getValue());
 			   }
 		   }
-		   nodes.put((Node<T>) v, vals);
+		   nodes.put((Node<T>) v, connections);
 	   }
 	   
 	   return nodes;
    }
+
+/**
+ * function traverses the graph and returns whether or not two people are "connected" 
+ * and what "level" (or depth) the connection is within the graph. Returns the depth 
+ * if they are connected, else returns -1.
+ * @param node1
+ * @param node2
+ * @return depth of the connection, -1 if the connection doesn't exist
+ */
+@SuppressWarnings("unchecked")
+public int connected(Node node1, Node node2){
+	if(node1 == node2){
+		return 0;
+	}
+	
+	Map<T,Integer> distance = new HashMap<T,Integer>();
+	
+	for (T v: neighbors.keySet()) distance.put(v, null);
+    distance.put((T) node1, 0);
+	
+ // Process nodes in queue order
+    Queue<T> queue = new LinkedList<T>();
+    queue.offer((T) node1);                                    // Place start node in queue
+    while (!queue.isEmpty()) {
+        T v = queue.remove();
+        int vDist = distance.get(v);
+        
+        // Update neighbors
+        for (T neighbor: neighbors.get(v)) {
+            if (distance.get(neighbor) != null) continue;  // Ignore if already done
+            if(neighbor == node2) return vDist+1;
+            distance.put(neighbor, vDist + 1);
+            queue.offer(neighbor);
+        }
+       
+    }
+	return -1;
+}
 
     
     /**
@@ -200,6 +259,7 @@ public Map<Node<T>, List<Node<T>>> findConnections(T start, int depth){
     	NodeImpl<String> E = new NodeImpl<String>("E");
     	NodeImpl<String> F = new NodeImpl<String>("F");
     	NodeImpl<String> G = new NodeImpl<String>("G");
+    	NodeImpl<String> H = new NodeImpl<String>("H");
     	graph.add(A, B); 
     	A.addChildren(B);
         graph.add(A, C); 
@@ -220,17 +280,14 @@ public Map<Node<T>, List<Node<T>>> findConnections(T start, int depth){
         System.out.println("A topological sort of the vertices: " + graph.topSort());
         System.out.println("The graph " + (graph.isDag()?"is":"is not") + " a dag");
         System.out.println("BFS distances starting from " + 0 + ": " + graph.bfsDistance(A,2));
-      //  System.out.println("BFS distances starting from " + 1 + ": " + graph.bfsDistance(1));
-       // System.out.println("BFS distances starting from " + 2 + ": " + graph.bfsDistance(2));
-        //graph.add(4, 1);                                     // Create a cycle
-        graph.add(E,B);
+        graph.add(E,B); // create cycle
         System.out.println("Cycle created");
         System.out.println("The current graph: " + graph);
         System.out.println("A topological sort of the vertices: " + graph.topSort());
         System.out.println("The graph " + (graph.isDag()?"is":"is not") + " a dag");
         System.out.println("Find connections for depth" + graph.findConnections(A, 2));
+        System.out.println("Is there a connection between the 2 nodes ? " + graph.connected(A, H));
         System.out.println("Children is : " + A.getChildrenCount());
-      //  System.out.println("BFS distances starting from " + 2 + ": " + graph.bfsDistance(2));
     }
 }
 
