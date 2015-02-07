@@ -30,7 +30,7 @@ package com.java.dynamicprogramming;
 	/**
 	 * DP implementation 
 	 * @return
-	 */
+
 	public static int subproblems(int i, int j){
 		if(arr[i][j] < 0){	
 			if(arr[i].equals('\0') || arr[j].equals('\0'))
@@ -40,7 +40,8 @@ package com.java.dynamicprogramming;
 			}else{
 				return Math.max(lcs(s1,s2, m,n-1),lcs(s1,s2,m-1, n));
 			}
-	}
+        }
+	}*/
 	
 	public static int lcsDP(String s1, String s2, int m, int n){
 		arr = new int[m][n];

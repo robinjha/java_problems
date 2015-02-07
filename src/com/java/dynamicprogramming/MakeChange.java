@@ -8,8 +8,9 @@ public class MakeChange {
 		if(index == denom.length)return 1;
 		int combs = 0;
 		for(int i = 0; i < n; i++){
-			combs += 
+
 		}
+        return 0;
 	}
 
 	public static int getChangeWays(int n){

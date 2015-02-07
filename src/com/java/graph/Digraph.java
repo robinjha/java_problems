@@ -83,11 +83,14 @@ public class Digraph<T> {
     }
     
     /**
-     * 
+     * Returns list of nodes in the graph.
      */
-    public List<Node<T>> nodesInTheGraph(){
-    	List<Node<T>>
-    	return 
+    public List<T> nodesInTheGraph(){
+    	List<T> nodes = new ArrayList<T>();
+    	for (T v: neighbors.keySet()){
+    		nodes.add(v);
+    	}
+    	return nodes;
     }
      
     /**
@@ -118,7 +121,7 @@ public class Digraph<T> {
     public List<T> topSort () {
         Map<T, Integer> degree = inDegree();
         // Determine all vertices with zero in-degree
-        Stack<T> zeroVerts = new Stack<T>();        // Stack as good as any here
+        Stack<T> zeroVerts = new Stack<T>();       
         for (T v: degree.keySet()) {
             if (degree.get(v) == 0) zeroVerts.push(v);
         }
@@ -288,6 +291,7 @@ public int connected(Node node1, Node node2){
         System.out.println("Find connections for depth" + graph.findConnections(A, 2));
         System.out.println("Is there a connection between the 2 nodes ? " + graph.connected(A, H));
         System.out.println("Children is : " + A.getChildrenCount());
+        System.out.println("Children is : " + graph.nodesInTheGraph());
     }
 }
 

@@ -9,7 +9,7 @@ public class reverseStringRecursive {
 	
 	public String reverse(String s){
 		
-		return reverse(s.);
+		return reverse(s);
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

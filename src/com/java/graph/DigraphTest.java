@@ -4,10 +4,13 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,14 +22,14 @@ public class DigraphTest<T> {
 	Map<T,Integer> result;
 
 	@BeforeClass
-	public static void setUp() throws FileNotFoundException {
+	public static void oneTimeSetUp() throws FileNotFoundException {
 		//for reading the file from maven resources folder
 		//ClassLoader classLoader = getClass().getClassLoader();
 		//File file = new File(classLoader.getResource("relations.txt").getFile());
 		File relations = new File("/Users/robin/Documents/workspace/java_problems/src/com/java/graph/relations.txt");
 		if(!relations.exists()) throw new FileNotFoundException("Relations file could not be found!!");
 		graph = new Digraph<Node<String>>();
-		System.out.println("@Before - setUp");
+		System.out.println("@BeforeClass - oneTimeSetUp");
 		Scanner scanner = new Scanner(relations);
 
 		while (scanner.hasNextLine()) {
@@ -46,9 +49,12 @@ public class DigraphTest<T> {
 		assertTrue(graph.nodeCount()>=10);
 	}
     
+	/**
+	 * out-degree for each node is the same as children
+	 */
 	@Test
-	public void assertChildrenCountForEachNode() {
-		System.out.println("No of children in the graph" + graph.outDegree());
+	public void assertOutDegreeForEachNode() {
+		System.out.println("No of children in the graph (out degree)" + graph.outDegree());
 		result = new HashMap<T,Integer>();
 		result = (Map<T, Integer>) graph.outDegree();
 		for (T from: result.keySet()) {
@@ -56,12 +62,18 @@ public class DigraphTest<T> {
 		}
 	}
 	
+	
 	@Test
 	public void checkCyclic() {
 		assertFalse(graph.isDag());
 	}
 	
 	
+	@AfterClass
+    public static void oneTimeTearDown() {
+        // one-time cleanup code
+    	System.out.println("@AfterClass - oneTimeTearDown");
+    }
 	
 
 
