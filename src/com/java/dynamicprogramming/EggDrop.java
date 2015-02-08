@@ -1,5 +1,6 @@
 package com.java.dynamicprogramming;
 
+
 /**
  * Given eggs and total number of floors find the 
  * least number of egg-droppings that is guaranteed to work in all cases
@@ -7,6 +8,7 @@ package com.java.dynamicprogramming;
  * (And what is the worst case for the number of drops it will take?)
  * detailed explanation : http://datagenetics.com/blog/july22012/index.html
  * Created by robin on 2/7/15.
+ * 
  */
 public class EggDrop {
 
@@ -37,6 +39,8 @@ public class EggDrop {
 
     /**
      * egg problem solution using dynamic programming
+     * time complexity - O(noOfEggs*noOfFloor^2)
+     * auxiliary space - O(noOfEggs*noOfFloor)
      * @param noOfEggs
      * @param noOfFloor
      * @return
@@ -46,7 +50,7 @@ public class EggDrop {
     	int[][] drops = new int[noOfEggs][noOfFloor];
     	if(noOfEggs < 0 || noOfFloor < 0) throw new Exception("The no of eggs and number of floor needs to be a positive integer");
     	
-    	int maxFloor = 0, res = 0;
+    	int res = 0;
     	
     	// if we only have one egg
     	for(int i = 1; i < noOfFloor ; i++){ 
@@ -78,8 +82,8 @@ public class EggDrop {
 
     public static void main(String[] args) throws  Exception{
         int noOfAvailableEggs = 2;
-        int noOfFloors = 15;
-        System.out.println("Floor value :" + maxDropFloor(noOfAvailableEggs, noOfFloors));
+        int noOfFloors = 36;
+        //System.out.println("Floor value :" + maxDropFloor(noOfAvailableEggs, noOfFloors));
         System.out.println("Floor value (DP) :" + maxDropFloor(noOfAvailableEggs, noOfFloors));
     }
 }
