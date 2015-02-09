@@ -1,4 +1,4 @@
-package ci.java.com;
+package com.java.dynamicprogramming;
 
 public class LongestIncreasingSubsequence {
 	
